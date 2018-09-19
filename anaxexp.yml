@@ -1,5 +1,15 @@
-pipeline:
-- name: Install dependencies
-  type: command
-  command: composer install --no-interaction --optimize-autoloader
-  directory: $APP_ROOT
+name: Composer Install
+stages:
+  - name: clone
+    steps:
+      - sourceCodeConfig:
+          branch: master
+          branchCondition: only
+          sourceCodeCredentialId: 'user-7fnnl:c-h9jdb-github-aecwells'
+          url: 'https://github.com/anaxexp/wordpress-compose.git'
+  - name: build
+    steps:
+      - runScriptConfig:
+          image: 'php:latest'
+          isShell: true
+          shellScript: composer install --no-interaction --optimize-autoloader
