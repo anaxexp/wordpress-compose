@@ -3,18 +3,14 @@
   "description": "Project template for WordPress projects with composer",
   "type": "project",
   "license": "GPL-2.0+",
-  "authors": [
-    {
-      "name": "",
-      "role": ""
-    }
-  ],
-  "repositories":[
-    {
-      "type":"composer",
-      "url":"https://wpackagist.org"
-    }
-  ],
+  "authors": [{
+    "name": "",
+    "role": ""
+  }],
+  "repositories": [{
+    "type": "composer",
+    "url": "https://wpackagist.org"
+  }],
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
@@ -28,13 +24,13 @@
   },
   "extra": {
     "installer-paths": {
-      "web/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/wp-content/themes/{$name}/": ["type:wordpress-theme"]
+      "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+      "wp-content/themes/{$name}/": ["type:wordpress-theme"]
     },
     "preserve-paths": [
-      "web/wp-config.php",
-      "web/wp-content/uploads"      
+      "wp-config.php",
+      "wp-content/uploads"
     ],
-    "wordpress-install-dir": "web"
+    "wordpress-install-dir": "./"
   }
 }
