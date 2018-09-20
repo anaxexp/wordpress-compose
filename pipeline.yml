@@ -14,7 +14,7 @@ stages:
           isShell: true
           shellScript: |-
             apt-get update
-            apt-get install -y --no-install-recommends git zip libsqlite3-dev zlib1g-dev
+            apt-get install -y --no-install-recommends git zip unzip libsqlite3-dev zlib1g-dev
             docker-php-ext-install zip
             curl --silent --show-error https://getcomposer.org/installer | php
             ./composer.phar install -n --prefer-dist
