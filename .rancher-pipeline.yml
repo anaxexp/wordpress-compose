@@ -12,11 +12,19 @@ stages:
         cp .env.testing .env
 - name: Publish image
   steps:
+  - runScriptConfig:
+      image: php:latest
+      shellScript: |
+        apt get update
+        apt get install git
+        git clone https://github.com/anaxexp/wordpress-php.git
+        cd wordpress-php && rm -rf .git/ && cp * ../ && cd ../
+        rm -rf wordpress-php
   - publishImageConfig:
-      dockerfilePath: ./4/Dockerfile
+      dockerfilePath: ./Dockerfile
       buildContext: .
       tag: wordpress-compose-example:${CICD_EXECUTION_SEQUENCE}
-      registry: 127.0.0.1:34561
+      registry: index.docker.io
 - name: Deploy
   steps:
   - applyYamlConfig:
