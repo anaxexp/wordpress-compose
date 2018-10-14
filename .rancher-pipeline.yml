@@ -9,7 +9,6 @@ stages:
         docker-php-ext-install zip
         curl --silent --show-error https://getcomposer.org/installer | php
         ./composer.phar install -n --prefer-dist
-        cp .env.testing .env
 - name: Publish image
   steps:
   - runScriptConfig:
@@ -17,9 +16,9 @@ stages:
       shellScript: |
         apt get update
         apt get install git
-        git clone https://github.com/anaxexp/wordpress-php.git
-        cd wordpress-php && rm -rf .git/ && cp * ../ && cd ../
-        rm -rf wordpress-php
+        git clone https://github.com/anaxexp/wordpress-php.git php
+        rm -rf !$/.git
+        cp php/* . && rm -rf ./php
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
