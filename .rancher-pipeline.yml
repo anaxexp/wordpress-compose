@@ -10,13 +10,13 @@ stages:
         curl --silent --show-error https://getcomposer.org/installer | php
         ./composer.phar install -n --prefer-dist
         cp .env.testing .env
-
 - name: Publish image
   steps:
   - publishImageConfig:
       dockerfilePath: ./4/Dockerfile
       buildContext: .
       tag: wordpress-compose-example:${CICD_EXECUTION_SEQUENCE}
+      registry: 127.0.0.1:34561
 - name: Deploy
   steps:
   - applyYamlConfig:
