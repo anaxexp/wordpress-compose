@@ -9,21 +9,12 @@ stages:
         docker-php-ext-install zip
         curl --silent --show-error https://getcomposer.org/installer | php
         ./composer.phar install -n --prefer-dist
-- name: Publish image
+- name: Build and publish image
   steps:
-  - runScriptConfig:
-      image: php:latest
-      shellScript: |
-        apt get update
-        apt get install git
-        git clone https://github.com/anaxexp/wordpress-php.git php
-        rm -rf !$/.git
-        cp php/* . && rm -rf ./php
   - publishImageConfig:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: wordpress-compose-example:${CICD_EXECUTION_SEQUENCE}
-      registry: index.docker.io
 - name: Deploy
   steps:
   - applyYamlConfig:
