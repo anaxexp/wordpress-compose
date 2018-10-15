@@ -31,6 +31,6 @@
       "wp-config.php",
       "wp-content/uploads"
     ],
-    "wordpress-install-dir": "./public"
+    "wordpress-install-dir": "./html"
   }
 }
