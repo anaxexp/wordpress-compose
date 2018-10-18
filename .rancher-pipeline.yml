@@ -26,3 +26,4 @@ stages:
       DB_PASSWORD: wordpress
       DB_ROOT_PASSWORD: password
       DB_USER: wordpress
+      WP_VERSION: "4"
