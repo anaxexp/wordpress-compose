@@ -1,10 +1,10 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: wordpress-compose-service
+  name: php
 spec:
   selector:
-    app: wordpress-compose-example
+    app: wordpress
   type: NodePort
   ports:
     - protocol: TCP
@@ -14,23 +14,26 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress-compose-example
+  name: wordpress
   labels:
-    app: wordpress-compose-example
+    app: wordpress
+    release: wordpress
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress-compose-example
+      app: wordpress
+      release: wordpress
   template:
     metadata:
       labels:
-        app: wordpress-compose-example
+        app: wordpress
+        release: wordpress
     spec:
       imagePullSecrets:
-      - name: pipeline-docker-registry
+        - name: pipeline-docker-registry
       containers:
-      - name: wordpress-compose
-        image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
-        ports:
-        - containerPort: 9000
+        - name: wordpress-compose
+          image: ${CICD_IMAGE}:${CICD_EXECUTION_SEQUENCE}
+          ports:
+            - containerPort: 9000
